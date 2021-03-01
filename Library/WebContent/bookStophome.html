@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>书城首页</title>
+	<link rel="stylesheet" type="text/css" href="layui/css/layui.css"  media="all">
+<style>
+	#searchButton{
+		width:70px;
+		height:40px;
+		background:#ff0000;
+		border-radius:0px 20px 20px 0px; 
+	}
+	
+	#searchDiv{
+		width:430px; 
+		height:35px; 
+		line-height:30px; 
+		margin:10px auto;  
+	}
+	
+	#searchText{
+		width:330px; 
+		height:35px;
+		border:solid #ff0000;
+		border-radius:20px 0px 0px 20px; 
+		text-align:center; 
+	}
+</style>
+</head>
+<body>
+<div id="searchDiv">
+	<form class="layui-form" action="" method="post"> 
+		<input type="text" id="searchText" placeholder="请选择" value="" name="searchText" />
+		<button lay-filter="searchButton" lay-submit id="searchButton" class="layui-btn layui-btn-danger">搜索</button>
+	</form>
+</div>
+<div style="width:98%; height:500px; margin:auto">
+	<iframe src="QueryAllBooks?index=1" name="main" 
+	width="100%" height="100%" id="btabIframe" frameborder="0" scrolling="yes"></iframe>
+</div>
+<script src="layui/layui.all.js" charset="utf-8"></script>
+<script>
+layui.use('form', function(){
+  var form = layui.form; 
+  form.on('submit(searchButton)', function(obj){
+  		document.getElementById("btabIframe").src=encodeURI('QueryBooks?index='+document.getElementById("searchText").value);
+	    return false;
+	});
+});
+</script>
+</body>
+</html>
